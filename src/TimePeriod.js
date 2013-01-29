@@ -9,12 +9,11 @@ function TimePeriod(years, months, days, hours, minutes, seconds) {
 	this.hours = hours;
 	this.minutes = minutes;
 	this.seconds = seconds;
-
 };
 
 TimePeriod.parse = function(str) {
-	var period = new TimePeriod(42,0,0,0,0,0);
-
+	var period = new TimePeriod(0,0,0,0,0,0);
+	// TODO : implement
 	return period;
 }
 
