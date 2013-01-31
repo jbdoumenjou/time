@@ -12,12 +12,24 @@ function TimePeriod(years, months, days, hours, minutes, seconds) {
 };
 
 TimePeriod.parse = function(str) {
+	var isIso8601format = function (str1) {
+		var regexp = /^P(\d+Y)?(\d+M)?(\d+D)?(T(?=(\d+H)?(\d+M)?(\d+S)?))?/;
+		
+	
+		return str1.match(regexp);
+	};
+
+	if (!isIso8601format(str)) {
+		throw new Error('It is not a valid iso 8601 format.');
+	}
+
 	var period = new TimePeriod(0,0,0,0,0,0);
 	// TODO : implement
 	return period;
 }
 
 TimePeriod.prototype.toString = function() {
+
 	var str = '';
 
 	// Date part
@@ -51,3 +63,6 @@ TimePeriod.prototype.toString = function() {
 
 	return  str;
 };
+
+
+

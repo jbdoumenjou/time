@@ -109,23 +109,87 @@ describe("TimePeriod toString method", function() {
 	});
 
 	it("should display a valid string for a complete Time period", function() {
-		    var period = new TimePeriod(0,0,0,12,34,56);
-		    expect(period.toString()).toEqual("PT12H34M56S");
+	    var period = new TimePeriod(0,0,0,12,34,56);
+	    expect(period.toString()).toEqual("PT12H34M56S");
 	});
 
 	it("should display a valid string for a complete period", function() {
-		    var period = new TimePeriod(1,2,3,4,5,6);
-		    expect(period.toString()).toEqual("P1Y2M3DT4H5M6S");
-		});
+	    var period = new TimePeriod(1,2,3,4,5,6);
+	    expect(period.toString()).toEqual("P1Y2M3DT4H5M6S");
+	});
 
 });
 
 
 describe("TimePeriod parse static method", function() {
 	
-	/*it("Should parse valid year period", function() {
-	    var period = TimePeriod.parse('P1Y');
-	    expect(period.years).toEqual(0);
-	});*/
+	it("throws error if it is not an iso8601 format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('nimp');
+	   	};
+	   	expect(parse).toThrow();
+	});
+
+	it("Identifies 'P1YT' as a not valid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('P1YT');
+	   	};
+	   	expect(parse).toThrow();
+	});
+
+	it("Identifies '1YT' as a not valid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('1YT');
+	   	};
+	   	expect(parse).toThrow();
+	});
+
+	it("Identifies 'P1Y' as a valid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('P1Y');
+	   	};
+	   	expect(parse).not.toThrow();
+	});
+
+	it("Identifies 'P1M' as a valid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('P1M');
+	   	};
+	   	expect(parse).not.toThrow();
+	});
+
+	it("Identifies 'P1D' as a valid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('P1D');
+	   	};
+	   	expect(parse).not.toThrow();
+	});
 	
+	it("Identifies 'PT1H' as a valid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('PT1H');
+	   	};
+	   	expect(parse).not.toThrow();
+	});
+
+	it("Identifies 'PT1M' as a valid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('PT1M');
+	   	};
+	   	expect(parse).not.toThrow();
+	});
+
+	it("Identifies 'PT1S' as a valid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('PT1S');
+	   	};
+	   	expect(parse).not.toThrow();
+	});
+
+	it("Identifies 'P42Y12M7DT9H10M1S' as a valid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('P42Y12M7DT9H10M1S');
+	   	};
+	   	expect(parse).not.toThrow();
+	});
 });
