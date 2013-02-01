@@ -137,6 +137,13 @@ describe("TimePeriod parse static method", function() {
 	   	expect(parse).toThrow();
 	});
 
+	it("Identifies 'PYT' as a not valid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('PYT');
+	   	};
+	   	expect(parse).toThrow();
+	});
+
 	it("Identifies '1YT' as a not valid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('1YT');
@@ -154,6 +161,20 @@ describe("TimePeriod parse static method", function() {
 	it("Identifies 'P1M' as a valid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('P1M');
+	   	};
+	   	expect(parse).not.toThrow();
+	});
+
+	it("Identifies 'PT1M' as a valid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('PT1M');
+	   	};
+	   	expect(parse).not.toThrow();
+	});
+
+	it("Identifies 'P1MT1M' as a valid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('PT1M');
 	   	};
 	   	expect(parse).not.toThrow();
 	});

@@ -12,11 +12,21 @@ function TimePeriod(years, months, days, hours, minutes, seconds) {
 };
 
 TimePeriod.parse = function(str) {
+	var regExpDatePart = /^P(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)D)?(?:T(.+))?$/;
+	var regExpTimePart = /^(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/;
+
 	var isIso8601format = function (str1) {
-		var regexp = /^P(\d+Y)?(\d+M)?(\d+D)?(T(?=(\d+H)?(\d+M)?(\d+S)?))?/;
-		
-	
-		return str1.match(regexp);
+		var dateParts = str1.match(regExpDatePart);
+
+		if (dateParts) {
+			var timePart = dateParts[4];
+			if (timePart) {
+				return timePart.match(regExpTimePart);
+			}
+			return true;
+		}
+
+		return false;
 	};
 
 	if (!isIso8601format(str)) {
