@@ -121,7 +121,35 @@ describe("TimePeriod toString method", function() {
 });
 
 describe("TimePeriod equals method", function() {
+	it("throws error if it is not a TimePeriod object", function() {
+		var period = new TimePeriod(1,2,3,4,5,6);
 
+		var equal = function() {
+			return period.equals('nimp');
+		};
+		expect(equal).toThrow();
+	});
+
+	it("should evaluate both period P1Y2M3DT4H5M6S as equal", function() {
+	    var period1 = new TimePeriod(1,2,3,4,5,6);
+	    var period2 = new TimePeriod(1,2,3,4,5,6);
+
+	    expect(period1.equals(period2)).toBe(true);
+	});
+
+	it("should evaluate both period P1Y as equal", function() {
+	    var period1 = new TimePeriod(1,0,0,0,0,0);
+	    var period2 = new TimePeriod(1,0,0,0,0,0);
+
+	    expect(period1.equals(period2)).toBe(true);
+	});
+
+	it("should evaluate period P1Y and P1M as not equal", function() {
+	    var period1 = new TimePeriod(1,0,0,0,0,0);
+	    var period2 = new TimePeriod(0,1,0,0,0,0);
+
+	    expect(period1.equals(period2)).toBe(false);
+	});
 });
 
 describe("TimePeriod parse static method", function() {

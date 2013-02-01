@@ -105,5 +105,13 @@ TimePeriod.prototype.toString = function() {
 	return  str;
 };
 
+TimePeriod.prototype.equals = function(other) {
+	if (!(other instanceof TimePeriod)) {
+		throw new Error('Cannot apply equals only on TimePeriod instance');
+	} 
+	var datePartAreEqual = this.years === other.years && this.months === other.months && this.days === other.days;
+	var timePartAreEqual = this.hours === other.hours && this.minutes === other.minutes && this.seconds === other.seconds;
 
+	return  datePartAreEqual && timePartAreEqual;
+};
 
