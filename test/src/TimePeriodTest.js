@@ -120,9 +120,15 @@ describe("TimePeriod toString method", function() {
 
 });
 
+describe("TimePeriod equals method", function() {
+
+});
 
 describe("TimePeriod parse static method", function() {
 	
+	//////////////////////////////////
+	// Invalid strings
+	//////////////////////////////////
 	it("throws error if it is not an iso8601 format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('nimp');
@@ -130,30 +136,82 @@ describe("TimePeriod parse static method", function() {
 	   	expect(parse).toThrow();
 	});
 
-	it("Identifies 'P1YT' as a not valid iso8601 period format", function() {
+	it("Identifies 'P1' as an invalid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('P1');
+	   	};
+	   	expect(parse).toThrow();
+	});
+
+	it("Identifies 'P1YT' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('P1YT');
 	   	};
 	   	expect(parse).toThrow();
 	});
 
-	it("Identifies 'PYT' as a not valid iso8601 period format", function() {
+	it("Identifies 'PYT' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('PYT');
 	   	};
 	   	expect(parse).toThrow();
 	});
 
-	it("Identifies '1YT' as a not valid iso8601 period format", function() {
+	it("Identifies '1YT' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('1YT');
 	   	};
 	   	expect(parse).toThrow();
 	});
 
+	it("Identifies '-P1Y' as an invalid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('-P1Y');
+	   	};
+	   	expect(parse).toThrow();
+	});
+
+	it("Identifies 'P1Y-' as an invalid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('P1Y-');
+	   	};
+	   	expect(parse).toThrow();
+	});
+
+	it("Identifies 'P1Y-T' as an invalid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('P1Y-T');
+	   	};
+	   	expect(parse).toThrow();
+	});
+
+	it("Identifies 'P1YT1' as an invalid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('P1YT1');
+	   	};
+	   	expect(parse).toThrow();
+	});
+
+	it("Identifies 'P1YT-1' as an invalid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('P1YT-1');
+	   	};
+	   	expect(parse).toThrow();
+	});
+	//////////////////////////////////
+	// Valid strings
+	//////////////////////////////////
+
 	it("Identifies 'P1Y' as a valid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('P1Y');
+	   	};
+	   	expect(parse).not.toThrow();
+	});
+
+	it("Identifies 'P-1Y' as a valid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('P-1Y');
 	   	};
 	   	expect(parse).not.toThrow();
 	});

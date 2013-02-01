@@ -1,6 +1,5 @@
 /**
-*	Class that manipulate period
-*	Parse ISO 8601 Format : P[nY][nM][nD][T[nH][nM][nS]]
+*	Class that manipulate period and manage string with ISO 8601 format
 */
 function TimePeriod(years, months, days, hours, minutes, seconds) {
 	this.years = years;
@@ -14,8 +13,8 @@ function TimePeriod(years, months, days, hours, minutes, seconds) {
 // Use Module pattern to encapsulate the code
 var timeUtils = (function () {
 	// Private part
-	var regExpDatePart = /^P(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)D)?(?:T(.+))?$/;
-	var regExpTimePart = /^(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/;
+	var regExpDatePart = /^P(?:([-]?\d+)Y)?(?:([-]?\d+)M)?(?:([-]?\d+)D)?(?:T(.+))?$/;
+	var regExpTimePart = /^(?:([-]?\d+)H)?(?:([-]?\d+)M)?(?:([-]?\d+)S)?$/;
 
 	var _isIso8601format = function (str) {
 		var dateParts = str.match(regExpDatePart);
@@ -61,20 +60,17 @@ var timeUtils = (function () {
 	}
 })();
 
-
+/**
+*	Parse ISO 8601 Format : P[nY][nM][nD][T[nH][nM][nS]] and create the corresponding period
+*/
 TimePeriod.parse = function(str) {
-	var regExpDatePart = /^P(?:(\d+)Y)?(?:(\d+)M)?(?:(\d+)D)?(?:T(.+))?$/;
-	var regExpTimePart = /^(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/;
-
-	if (timeUtils.isIso8601format(str)) {
-		return timeUtils.extractPeriodValues(str);
-	} else {
+	if (!timeUtils.isIso8601format(str)) {
 		throw new Error('It is not a valid iso 8601 format.');
 	}
+	return timeUtils.extractPeriodValues(str);
 }
 
 TimePeriod.prototype.toString = function() {
-
 	var str = '';
 
 	// Date part
