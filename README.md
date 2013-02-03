@@ -1,7 +1,7 @@
 Time
 ====
 
-A simple JS library for manipulating time
+A simple JS library for time manipulation.
 
 Tests
 ====
