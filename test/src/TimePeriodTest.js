@@ -238,75 +238,75 @@ describe("TimePeriod parse static method", function() {
 	//////////////////////////////////
 
 	it("Create 'P12Y' period from string", function() {
-	   	var exepected = new TimePeriod(12,0,0,0,0,0);
+	   	var expected = new TimePeriod(12,0,0,0,0,0);
 	   	var actual = TimePeriod.parse('P12Y');
-	   	expect(actual).toEqual(exepected);
+	   	expect(actual).toEqual(expected);
 	});
 
 	it("Create 'P-12Y' period from string", function() {
-	   	var exepected = new TimePeriod(-12,0,0,0,0,0);
+	   	var expected = new TimePeriod(-12,0,0,0,0,0);
 	   	var actual = TimePeriod.parse('P-12Y');
-	   	expect(actual).toEqual(exepected);
+	   	expect(actual).toEqual(expected);
 	});
 
 	it("Create 'P14M' period from string", function() {
-	   	var exepected = new TimePeriod(0,14,0,0,0,0);
+	   	var expected = new TimePeriod(0,14,0,0,0,0);
 	   	var actual = TimePeriod.parse('P14M');
-	   	expect(actual).toEqual(exepected);
+	   	expect(actual).toEqual(expected);
 	});
 
 	it("Create 'P-14M' period from string", function() {
-	   	var exepected = new TimePeriod(0,-14,0,0,0,0);
+	   	var expected = new TimePeriod(0,-14,0,0,0,0);
 	   	var actual = TimePeriod.parse('P-14M');
-	   	expect(actual).toEqual(exepected);
+	   	expect(actual).toEqual(expected);
 	});
 
 	it("Create 'P112D' period from string", function() {
-	   	var exepected = new TimePeriod(0,0,112,0,0,0);
+	   	var expected = new TimePeriod(0,0,112,0,0,0);
 	   	var actual = TimePeriod.parse('P112D');
-	   	expect(actual).toEqual(exepected);
+	   	expect(actual).toEqual(expected);
 	});
 
 	it("Create 'P-112D' period from string", function() {
-	   	var exepected = new TimePeriod(0,0,-112,0,0,0);
+	   	var expected = new TimePeriod(0,0,-112,0,0,0);
 	   	var actual = TimePeriod.parse('P-112D');
-	   	expect(actual).toEqual(exepected);
+	   	expect(actual).toEqual(expected);
 	});
 
 	it("Create 'PT23H' period from string", function() {
-	   	var exepected = new TimePeriod(0,0,0,23,0,0);
+	   	var expected = new TimePeriod(0,0,0,23,0,0);
 	   	var actual = TimePeriod.parse('PT23H');
-	   	expect(actual).toEqual(exepected);
+	   	expect(actual).toEqual(expected);
 	});
 
 	it("Create 'PT-23H' period from string", function() {
-	   	var exepected = new TimePeriod(0,0,0,-23,0,0);
+	   	var expected = new TimePeriod(0,0,0,-23,0,0);
 	   	var actual = TimePeriod.parse('PT-23H');
-	   	expect(actual).toEqual(exepected);
+	   	expect(actual).toEqual(expected);
 	});
 
 	it("Create 'PT58M' period from string", function() {
-	   	var exepected = new TimePeriod(0,0,0,0,58,0);
+	   	var expected = new TimePeriod(0,0,0,0,58,0);
 	   	var actual = TimePeriod.parse('PT58M');
-	   	expect(actual).toEqual(exepected);
+	   	expect(actual).toEqual(expected);
 	});
 
 	it("Create 'PT442S' period from string", function() {
-	   	var exepected = new TimePeriod(0,0,0,0,0,442);
+	   	var expected = new TimePeriod(0,0,0,0,0,442);
 	   	var actual = TimePeriod.parse('PT442S');
-	   	expect(actual).toEqual(exepected);
+	   	expect(actual).toEqual(expected);
 	});
 
 	it("Create 'PT-442S' period from string", function() {
-	   	var exepected = new TimePeriod(0,0,0,0,0,-442);
+	   	var expected = new TimePeriod(0,0,0,0,0,-442);
 	   	var actual = TimePeriod.parse('PT-442S');
-	   	expect(actual).toEqual(exepected);
+	   	expect(actual).toEqual(expected);
 	});
 
 	it("Create 'P-42Y12M-7DT9H-10M1S' period from string", function() {
-	   	var exepected = new TimePeriod(-42,12,-7,9,-10,1);
+	   	var expected = new TimePeriod(-42,12,-7,9,-10,1);
 	   	var actual = TimePeriod.parse('P-42Y12M-7DT9H-10M1S');
-	   	expect(actual).toEqual(exepected);
+	   	expect(actual).toEqual(expected);
 	});
 
 });
