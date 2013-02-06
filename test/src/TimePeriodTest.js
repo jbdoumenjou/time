@@ -157,12 +157,12 @@ describe("TimePeriod parse static method", function() {
 	//////////////////////////////////
 	// Invalid strings
 	//////////////////////////////////
-	it("throws error if it is not an iso8601 format", function() {
+	it("Identifies 'nimp' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('nimp');
 	   	};
 	   	expect(parse).toThrow();
-	});
+	});	
 
 	it("Identifies 'P1' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
@@ -226,77 +226,87 @@ describe("TimePeriod parse static method", function() {
 	   	};
 	   	expect(parse).toThrow();
 	});
+
+	it("Identifies 'P1YT-1' as an invalid iso8601 period format", function() {
+	   	var parse = function() {
+	   		return TimePeriod.parse('P--1YT');
+	   	};
+	   	expect(parse).toThrow();
+	});
 	//////////////////////////////////
 	// Valid strings
 	//////////////////////////////////
 
-	it("Identifies 'P1Y' as a valid iso8601 period format", function() {
-	   	var parse = function() {
-	   		return TimePeriod.parse('P1Y');
-	   	};
-	   	expect(parse).not.toThrow();
+	it("Create 'P12Y' period from string", function() {
+	   	var exepected = new TimePeriod(12,0,0,0,0,0);
+	   	var actual = TimePeriod.parse('P12Y');
+	   	expect(actual).toEqual(exepected);
 	});
 
-	it("Identifies 'P-1Y' as a valid iso8601 period format", function() {
-	   	var parse = function() {
-	   		return TimePeriod.parse('P-1Y');
-	   	};
-	   	expect(parse).not.toThrow();
+	it("Create 'P-12Y' period from string", function() {
+	   	var exepected = new TimePeriod(-12,0,0,0,0,0);
+	   	var actual = TimePeriod.parse('P-12Y');
+	   	expect(actual).toEqual(exepected);
 	});
 
-	it("Identifies 'P1M' as a valid iso8601 period format", function() {
-	   	var parse = function() {
-	   		return TimePeriod.parse('P1M');
-	   	};
-	   	expect(parse).not.toThrow();
+	it("Create 'P14M' period from string", function() {
+	   	var exepected = new TimePeriod(0,14,0,0,0,0);
+	   	var actual = TimePeriod.parse('P14M');
+	   	expect(actual).toEqual(exepected);
 	});
 
-	it("Identifies 'PT1M' as a valid iso8601 period format", function() {
-	   	var parse = function() {
-	   		return TimePeriod.parse('PT1M');
-	   	};
-	   	expect(parse).not.toThrow();
+	it("Create 'P-14M' period from string", function() {
+	   	var exepected = new TimePeriod(0,-14,0,0,0,0);
+	   	var actual = TimePeriod.parse('P-14M');
+	   	expect(actual).toEqual(exepected);
 	});
 
-	it("Identifies 'P1MT1M' as a valid iso8601 period format", function() {
-	   	var parse = function() {
-	   		return TimePeriod.parse('PT1M');
-	   	};
-	   	expect(parse).not.toThrow();
+	it("Create 'P112D' period from string", function() {
+	   	var exepected = new TimePeriod(0,0,112,0,0,0);
+	   	var actual = TimePeriod.parse('P112D');
+	   	expect(actual).toEqual(exepected);
 	});
 
-	it("Identifies 'P1D' as a valid iso8601 period format", function() {
-	   	var parse = function() {
-	   		return TimePeriod.parse('P1D');
-	   	};
-	   	expect(parse).not.toThrow();
-	});
-	
-	it("Identifies 'PT1H' as a valid iso8601 period format", function() {
-	   	var parse = function() {
-	   		return TimePeriod.parse('PT1H');
-	   	};
-	   	expect(parse).not.toThrow();
+	it("Create 'P-112D' period from string", function() {
+	   	var exepected = new TimePeriod(0,0,-112,0,0,0);
+	   	var actual = TimePeriod.parse('P-112D');
+	   	expect(actual).toEqual(exepected);
 	});
 
-	it("Identifies 'PT1M' as a valid iso8601 period format", function() {
-	   	var parse = function() {
-	   		return TimePeriod.parse('PT1M');
-	   	};
-	   	expect(parse).not.toThrow();
+	it("Create 'PT23H' period from string", function() {
+	   	var exepected = new TimePeriod(0,0,0,23,0,0);
+	   	var actual = TimePeriod.parse('PT23H');
+	   	expect(actual).toEqual(exepected);
 	});
 
-	it("Identifies 'PT1S' as a valid iso8601 period format", function() {
-	   	var parse = function() {
-	   		return TimePeriod.parse('PT1S');
-	   	};
-	   	expect(parse).not.toThrow();
+	it("Create 'PT-23H' period from string", function() {
+	   	var exepected = new TimePeriod(0,0,0,-23,0,0);
+	   	var actual = TimePeriod.parse('PT-23H');
+	   	expect(actual).toEqual(exepected);
 	});
 
-	it("Identifies 'P42Y12M7DT9H10M1S' as a valid iso8601 period format", function() {
-	   	var parse = function() {
-	   		return TimePeriod.parse('P42Y12M7DT9H10M1S');
-	   	};
-	   	expect(parse).not.toThrow();
+	it("Create 'PT58M' period from string", function() {
+	   	var exepected = new TimePeriod(0,0,0,0,58,0);
+	   	var actual = TimePeriod.parse('PT58M');
+	   	expect(actual).toEqual(exepected);
 	});
+
+	it("Create 'PT442S' period from string", function() {
+	   	var exepected = new TimePeriod(0,0,0,0,0,442);
+	   	var actual = TimePeriod.parse('PT442S');
+	   	expect(actual).toEqual(exepected);
+	});
+
+	it("Create 'PT-442S' period from string", function() {
+	   	var exepected = new TimePeriod(0,0,0,0,0,-442);
+	   	var actual = TimePeriod.parse('PT-442S');
+	   	expect(actual).toEqual(exepected);
+	});
+
+	it("Create 'P-42Y12M-7DT9H-10M1S' period from string", function() {
+	   	var exepected = new TimePeriod(-42,12,-7,9,-10,1);
+	   	var actual = TimePeriod.parse('P-42Y12M-7DT9H-10M1S');
+	   	expect(actual).toEqual(exepected);
+	});
+
 });

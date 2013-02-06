@@ -13,8 +13,8 @@ function TimePeriod(years, months, days, hours, minutes, seconds) {
 // Use Module pattern to encapsulate the code
 var timeUtils = (function () {
 	// Private part
-	var regExpDatePart = /^P(?:([-]?\d+)Y)?(?:([-]?\d+)M)?(?:([-]?\d+)D)?(?:T(.+))?$/;
-	var regExpTimePart = /^(?:([-]?\d+)H)?(?:([-]?\d+)M)?(?:([-]?\d+)S)?$/;
+	var regExpDatePart = /^P(?:(-?\d+)Y)?(?:(-?\d+)M)?(?:(-?\d+)D)?(?:T(.+))?$/;
+	var regExpTimePart = /^(?:(-?\d+)H)?(?:(-?\d+)M)?(?:(-?\d+)S)?$/;
 
 	var _isIso8601format = function (str) {
 		var dateParts = str.match(regExpDatePart);
@@ -34,16 +34,16 @@ var timeUtils = (function () {
 		var period = new TimePeriod(0,0,0,0,0,0);
 
 		var dateParts = str.match(regExpDatePart);
-		period.years = dateParts[1] ? dateParts[1] : 0;
-		period.months = dateParts[2] ? dateParts[2] : 0;
-		period.days = dateParts[3] ? dateParts[3] : 0;
+		period.years = dateParts[1] ? +dateParts[1] : 0;
+		period.months = dateParts[2] ? +dateParts[2] : 0;
+		period.days = dateParts[3] ? +dateParts[3] : 0;
 
 		if (dateParts[4]) {
 			var timeParts = dateParts[4].match(regExpTimePart);
 			if (timeParts) {
-				period.hours = timeParts[1] ? timeParts[3] : 0;
-				period.minutes = timeParts[2] ? timeParts[2] : 0;
-				period.seconds = timeParts[3] ? timeParts[3] : 0;
+				period.hours = timeParts[1] ? +timeParts[1] : 0;
+				period.minutes = timeParts[2] ? +timeParts[2] : 0;
+				period.seconds = timeParts[3] ? +timeParts[3] : 0;
 			}
 		}
 
