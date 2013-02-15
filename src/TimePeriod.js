@@ -34,16 +34,16 @@ var timeUtils = (function () {
 		var period = new TimePeriod(0,0,0,0,0,0);
 
 		var dateParts = str.match(regExpDatePart);
-		period.years = dateParts[1] ? +dateParts[1] : 0;
-		period.months = dateParts[2] ? +dateParts[2] : 0;
-		period.days = dateParts[3] ? +dateParts[3] : 0;
+		period.years = +dateParts[1] || 0;
+		period.months = +dateParts[2] || 0;
+		period.days = +dateParts[3] || 0;
 
 		if (dateParts[4]) {
 			var timeParts = dateParts[4].match(regExpTimePart);
 			if (timeParts) {
-				period.hours = timeParts[1] ? +timeParts[1] : 0;
-				period.minutes = timeParts[2] ? +timeParts[2] : 0;
-				period.seconds = timeParts[3] ? +timeParts[3] : 0;
+				period.hours = +timeParts[1] || 0;
+				period.minutes = +timeParts[2] || 0;
+				period.seconds = +timeParts[3] || 0;
 			}
 		}
 
@@ -103,6 +103,13 @@ TimePeriod.prototype.toString = function() {
 	}
 
 	return  str;
+};
+
+TimePeriod.prototype.add = function (other) {
+	if (!(other instanceof TimePeriod)) {
+		throw new Error('Can apply equals only on TimePeriod instance');
+	} 
+	return new Period(this.years + other.years, this.months + other.months, this.days + other.days, this.hours + other.hours, this.minutes + other.minutes, this.seconds + other.seconds);
 };
 
 TimePeriod.prototype.equals = function(other) {

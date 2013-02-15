@@ -121,7 +121,7 @@ describe("TimePeriod toString method", function() {
 });
 
 describe("TimePeriod equals method", function() {
-	it("throws error if it is not a TimePeriod object", function() {
+	it("throws an error if it is not a TimePeriod object", function() {
 		var period = new TimePeriod(1,2,3,4,5,6);
 
 		var equal = function() {
@@ -157,77 +157,77 @@ describe("TimePeriod parse static method", function() {
 	//////////////////////////////////
 	// Invalid strings
 	//////////////////////////////////
-	it("Identifies 'nimp' as an invalid iso8601 period format", function() {
+	it("identifies 'nimp' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('nimp');
 	   	};
 	   	expect(parse).toThrow();
 	});	
 
-	it("Identifies 'P1' as an invalid iso8601 period format", function() {
+	it("identifies 'P1' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('P1');
 	   	};
 	   	expect(parse).toThrow();
 	});
 
-	it("Identifies 'P1YT' as an invalid iso8601 period format", function() {
+	it("identifies 'P1YT' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('P1YT');
 	   	};
 	   	expect(parse).toThrow();
 	});
 
-	it("Identifies 'PYT' as an invalid iso8601 period format", function() {
+	it("identifies 'PYT' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('PYT');
 	   	};
 	   	expect(parse).toThrow();
 	});
 
-	it("Identifies '1YT' as an invalid iso8601 period format", function() {
+	it("identifies '1YT' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('1YT');
 	   	};
 	   	expect(parse).toThrow();
 	});
 
-	it("Identifies '-P1Y' as an invalid iso8601 period format", function() {
+	it("identifies '-P1Y' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('-P1Y');
 	   	};
 	   	expect(parse).toThrow();
 	});
 
-	it("Identifies 'P1Y-' as an invalid iso8601 period format", function() {
+	it("identifies 'P1Y-' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('P1Y-');
 	   	};
 	   	expect(parse).toThrow();
 	});
 
-	it("Identifies 'P1Y-T' as an invalid iso8601 period format", function() {
+	it("identifies 'P1Y-T' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('P1Y-T');
 	   	};
 	   	expect(parse).toThrow();
 	});
 
-	it("Identifies 'P1YT1' as an invalid iso8601 period format", function() {
+	it("identifies 'P1YT1' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('P1YT1');
 	   	};
 	   	expect(parse).toThrow();
 	});
 
-	it("Identifies 'P1YT-1' as an invalid iso8601 period format", function() {
+	it("identifies 'P1YT-1' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('P1YT-1');
 	   	};
 	   	expect(parse).toThrow();
 	});
 
-	it("Identifies 'P1YT-1' as an invalid iso8601 period format", function() {
+	it("identifies 'P1YT-1' as an invalid iso8601 period format", function() {
 	   	var parse = function() {
 	   		return TimePeriod.parse('P--1YT');
 	   	};
@@ -237,76 +237,87 @@ describe("TimePeriod parse static method", function() {
 	// Valid strings
 	//////////////////////////////////
 
-	it("Create 'P12Y' period from string", function() {
+	it("creates 'P12Y' period from string", function() {
 	   	var expected = new TimePeriod(12,0,0,0,0,0);
 	   	var actual = TimePeriod.parse('P12Y');
 	   	expect(actual).toEqual(expected);
 	});
 
-	it("Create 'P-12Y' period from string", function() {
+	it("creates 'P-12Y' period from string", function() {
 	   	var expected = new TimePeriod(-12,0,0,0,0,0);
 	   	var actual = TimePeriod.parse('P-12Y');
 	   	expect(actual).toEqual(expected);
 	});
 
-	it("Create 'P14M' period from string", function() {
+	it("creates 'P14M' period from string", function() {
 	   	var expected = new TimePeriod(0,14,0,0,0,0);
 	   	var actual = TimePeriod.parse('P14M');
 	   	expect(actual).toEqual(expected);
 	});
 
-	it("Create 'P-14M' period from string", function() {
+	it("create 'P-14M' period from string", function() {
 	   	var expected = new TimePeriod(0,-14,0,0,0,0);
 	   	var actual = TimePeriod.parse('P-14M');
 	   	expect(actual).toEqual(expected);
 	});
 
-	it("Create 'P112D' period from string", function() {
+	it("creates 'P112D' period from string", function() {
 	   	var expected = new TimePeriod(0,0,112,0,0,0);
 	   	var actual = TimePeriod.parse('P112D');
 	   	expect(actual).toEqual(expected);
 	});
 
-	it("Create 'P-112D' period from string", function() {
+	it("Creates 'P-112D' period from string", function() {
 	   	var expected = new TimePeriod(0,0,-112,0,0,0);
 	   	var actual = TimePeriod.parse('P-112D');
 	   	expect(actual).toEqual(expected);
 	});
 
-	it("Create 'PT23H' period from string", function() {
+	it("creates 'PT23H' period from string", function() {
 	   	var expected = new TimePeriod(0,0,0,23,0,0);
 	   	var actual = TimePeriod.parse('PT23H');
 	   	expect(actual).toEqual(expected);
 	});
 
-	it("Create 'PT-23H' period from string", function() {
+	it("creates 'PT-23H' period from string", function() {
 	   	var expected = new TimePeriod(0,0,0,-23,0,0);
 	   	var actual = TimePeriod.parse('PT-23H');
 	   	expect(actual).toEqual(expected);
 	});
 
-	it("Create 'PT58M' period from string", function() {
+	it("creates 'PT58M' period from string", function() {
 	   	var expected = new TimePeriod(0,0,0,0,58,0);
 	   	var actual = TimePeriod.parse('PT58M');
 	   	expect(actual).toEqual(expected);
 	});
 
-	it("Create 'PT442S' period from string", function() {
+	it("creates 'PT442S' period from string", function() {
 	   	var expected = new TimePeriod(0,0,0,0,0,442);
 	   	var actual = TimePeriod.parse('PT442S');
 	   	expect(actual).toEqual(expected);
 	});
 
-	it("Create 'PT-442S' period from string", function() {
+	it("creates 'PT-442S' period from string", function() {
 	   	var expected = new TimePeriod(0,0,0,0,0,-442);
 	   	var actual = TimePeriod.parse('PT-442S');
 	   	expect(actual).toEqual(expected);
 	});
 
-	it("Create 'P-42Y12M-7DT9H-10M1S' period from string", function() {
+	it("creates 'P-42Y12M-7DT9H-10M1S' period from string", function() {
 	   	var expected = new TimePeriod(-42,12,-7,9,-10,1);
 	   	var actual = TimePeriod.parse('P-42Y12M-7DT9H-10M1S');
 	   	expect(actual).toEqual(expected);
 	});
 
+});
+
+describe("TimePeriod add method", function() {
+	it("throws an error if it is not a TimePeriod object", function() {
+		var period = new TimePeriod(1,2,3,4,5,6);
+
+		var equal = function() {
+			return period.add('nimp');
+		};
+		expect(equal).toThrow();
+	});
 });
